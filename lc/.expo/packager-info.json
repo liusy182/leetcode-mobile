@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 80493,
-  "expoServerNgrokUrl": "https://wx-s6t.anonymous.lc.exp.direct",
-  "packagerNgrokUrl": "https://packager.wx-s6t.anonymous.lc.exp.direct",
-  "ngrokPid": 80501
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": "https://rv-ukt.anonymous.lc.exp.direct",
+  "packagerNgrokUrl": "https://packager.rv-ukt.anonymous.lc.exp.direct",
+  "ngrokPid": 99446
 }
