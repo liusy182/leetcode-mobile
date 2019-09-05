@@ -4,39 +4,32 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import HTML from 'react-native-render-html';
 
 
-class QuestionList extends Component {
+class Question extends Component {
     render() {
         return (
             <View style={styles.container}>
                 <View>
-                    <FlatList
-                        styles={styles.list}
-                        data={this.props.questions}
-                        renderItem={({item}) => (
-                            <View>
-                                <Text style={styles.title}>{item.title}</Text>
-                            </View>
-                        )}
-                    />
+                    <Text style={styles.title}>{this.props.questions[0].title}</Text>
+                    <HTML html={this.props.questions[0].content} />
                 </View>
             </View>
         );
     }
 }
 
-const mapStateToProps = ({questions}) => ({
+const mapStateToProps = ({ questions }) => ({
     questions,
 })
 
 const mapDispatchToProps = dispatch => ({
-    
+
 })
 
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(QuestionList)
+)(Question)
 
 
 const styles = StyleSheet.create({
@@ -45,12 +38,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
     },
-    list: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-    },
     title: {
-        fontSize: 20,
+        fontSize: 24,
     }
 });

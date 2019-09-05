@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, } from 'react-native';
-
+import { StyleSheet, SafeAreaView, ScrollView, } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 
 import QuestionList from './components/questionList';
+import Question from './components/question';
+import Solution from './components/solution';
 
 const store = createStore(rootReducer)
 
@@ -13,9 +14,13 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <QuestionList />
-        </View>
+        <SafeAreaView style={styles.container}>
+          <ScrollView>
+            <QuestionList />
+            <Question />
+            <Solution />
+          </ScrollView>
+        </SafeAreaView>
       </Provider>
     );
   }

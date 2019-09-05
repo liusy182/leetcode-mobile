@@ -20,8 +20,6 @@ return [<strong>0</strong>, <strong>1</strong>].
 
 const questions = (state = defaultState, action) => {
     switch (action.type) {
-        case 'GET_QUESTIONS':
-            return ;
         default:
             return state
     }
