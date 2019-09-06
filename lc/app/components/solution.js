@@ -6,19 +6,20 @@ import Markdown from 'react-native-markdown-renderer';
 
 class Solution extends Component {
     render() {
+        const { solution } = this.props;
         return (
             <View style={styles.container}>
                 <View>
-                    <Text style={styles.title}>{this.props.solution.title}</Text>
-                    <Markdown>html={this.props.solution.content}</Markdown>
+                    <Markdown>{solution.content}</Markdown>
                 </View>
             </View>
         );
     }
 }
 
-const mapStateToProps = ({ solutions, codeSnippets }) => {
-    const solution = solutions[0];
+const mapStateToProps = ({ solutions, codeSnippets }, ownProps) => {
+    const { questionId } = ownProps.navigation.state.params;
+    const solution = solutions.find((question) => question.id == questionId)
     solution.content = solution.content
         .replace(/\$\$CodeSnippet([\d+])\$\$/g, (match, id) => '```\n' + codeSnippets[id].code + '\n```')
         .replace(/↵/g, '\n');

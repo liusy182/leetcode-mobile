@@ -1,36 +1,31 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, } from 'react-native';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
 import rootReducer from './reducers'
 
-import QuestionList from './components/questionList';
-import Question from './components/question';
-import Solution from './components/solution';
+import Home from './components/Home';
+import Question from './components/Question';
+import Solution from './components/Solution';
 
 const store = createStore(rootReducer)
+
+const AppNavigator = createStackNavigator({
+  Home: { screen: Home },
+  Question: { screen: Question },
+  Solution: { screen: Solution },
+});
+
+const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <SafeAreaView style={styles.container}>
-          <ScrollView>
-            <QuestionList />
-            <Question />
-            <Solution />
-          </ScrollView>
-        </SafeAreaView>
+        <AppContainer />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
