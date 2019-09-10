@@ -37,7 +37,10 @@ class QuestionList extends Component {
 }
 
 const mapStateToProps = ({questions}) => ({
-    questions,
+    questions: questions.map(q => ({
+        ...q,
+        key: q.id
+    })),
 })
 
 const mapDispatchToProps = dispatch => ({

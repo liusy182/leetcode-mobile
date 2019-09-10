@@ -1,3 +1,5 @@
+import { qlist } from '../constants'
+
 const defaultState = [{
     key: '1',
     id: 1,
@@ -18,7 +20,7 @@ return [<strong>0</strong>, <strong>1</strong>].
     ]
 }]
 
-const questions = (state = defaultState, action) => {
+const questions = (state = qlist, action) => {
     switch (action.type) {
         default:
             return state

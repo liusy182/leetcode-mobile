@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import Markdown from 'react-native-markdown-renderer';
 
 
@@ -9,9 +9,9 @@ class Solution extends Component {
         const { solution } = this.props;
         return (
             <View style={styles.container}>
-                <View>
+                <ScrollView>
                     <Markdown>{solution.content}</Markdown>
-                </View>
+                </ScrollView>
             </View>
         );
     }
