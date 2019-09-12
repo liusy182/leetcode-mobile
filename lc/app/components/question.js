@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import HTML from 'react-native-render-html';
 
 
@@ -9,14 +9,16 @@ class Question extends Component {
         const { question, navigation } = this.props;
         return (
             <View style={styles.container}>
-                <View>
-                    <Text style={styles.title}>{question.title}</Text>
-                    <HTML html={question.content} />
-                </View>
-                <Button 
-                    title="Solution" 
-                    onPress={() => navigation.navigate('Solution', {questionid: question.id})}
-                />
+                <ScrollView>
+                    <View>
+                        <Text style={styles.title}>{question.title}</Text>
+                        <HTML html={question.content} />
+                    </View>
+                    <Button 
+                        title="Solution" 
+                        onPress={() => navigation.navigate('Solution', {questionid: question.id})}
+                    />
+                </ScrollView>
             </View>
         );
     }
@@ -31,7 +33,6 @@ const mapStateToProps = ({ questions }, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-
 })
 
 
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        alignItems: 'stretch',
     },
     title: {
         fontSize: 24,

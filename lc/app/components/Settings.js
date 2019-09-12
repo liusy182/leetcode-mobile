@@ -1,26 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, View, Button } from 'react-native';
-import SearchBar from './SearchBar';
-import QuestionList from './QuestionList';
+import { StyleSheet, View, Text } from 'react-native';
 
-
-class Home extends Component {
-    static navigationOptions = ({ navigation }) => ({
-        title: 'Questions',
-        headerRight: (
-            <Button
-                onPress={() => navigation.navigate('Settings') }
-                title = "Settings"
-            />),
-    })
+class Settings extends Component {
+    static navigationOptions = {
+        title: 'Settings',
+    }
 
     render() {
         const { navigation } = this.props;
         return (
             <View style={styles.container}>
-                <SearchBar />
-                <QuestionList navigation={navigation}/>
+                <Text>Settings</Text>
             </View>
         );
     }
@@ -35,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home)
+)(Settings)
 
 
 const styles = StyleSheet.create({

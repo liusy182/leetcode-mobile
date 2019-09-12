@@ -19,7 +19,7 @@ class Solution extends Component {
 
 const mapStateToProps = ({ solutions, codeSnippets }, ownProps) => {
     const { questionId } = ownProps.navigation.state.params;
-    const solution = solutions.find((question) => question.id == questionId)
+    const solution = solutions.find((solution) => solution.questionId == questionId)
     solution.content = solution.content
         .replace(/\$\$CodeSnippet([\d+])\$\$/g, (match, id) => '```\n' + codeSnippets[id].code + '\n```')
         .replace(/↵/g, '\n');
