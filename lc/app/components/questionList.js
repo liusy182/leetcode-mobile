@@ -20,12 +20,20 @@ class QuestionList extends Component {
     }
 }
 
-const mapStateToProps = ({questions}) => ({
-    questions: questions.map(q => ({
-        ...q,
-        key: q.id
-    })),
-})
+const mapStateToProps = ({questions}, ownProps) => {
+    let cleanedQuestions = questions;
+    if (ownProps.filterText) {
+        const text = ownProps.filterText.toLowerCase();
+        cleanedQuestions = cleanedQuestions.filter(
+            q => q.title.toLowerCase().includes(text));
+    }
+    return  {
+        questions: cleanedQuestions.map(q => ({
+            ...q,
+            key: q.id
+        }))
+    };
+}
 
 const mapDispatchToProps = dispatch => ({
 })

@@ -49,6 +49,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
+        paddingHorizontal: 8,
+        paddingVertical: 8,
     },
     title: {
         fontSize: 24,

@@ -14,13 +14,23 @@ class Home extends Component {
                 title = "Settings"
             />),
     })
+    
+    state = {
+        filterText: '',
+        orderBy: 'number',
+    }
+
+    onChangeText = (text) => {
+        this.setState({filterText: text});
+    }
 
     render() {
         const { navigation } = this.props;
+        const { filterText, orderBy } = this.state;
         return (
             <View style={styles.container}>
-                <SearchBar />
-                <QuestionList navigation={navigation}/>
+                <SearchBar orderBy={orderBy} onChangeText={this.onChangeText}/>
+                <QuestionList navigation={navigation} filterText={filterText} orderBy={orderBy}/>
             </View>
         );
     }
