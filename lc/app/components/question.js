@@ -14,10 +14,12 @@ class Question extends Component {
                         <Text style={styles.title}>{question.title}</Text>
                         <HTML html={question.content} />
                     </View>
-                    <Button 
-                        title="Solution" 
-                        onPress={() => navigation.navigate('Solution', {questionid: question.id})}
-                    />
+                    <View style={styles.btn}>
+                        <Button 
+                            title="Solution" 
+                            onPress={() => navigation.navigate('Solution', {questionid: question.id})}
+                        />
+                    </View>
                 </ScrollView>
             </View>
         );
@@ -50,5 +52,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+    }, 
+    btn: {
+        marginBottom: 20,
     }
 });
