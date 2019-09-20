@@ -31,7 +31,7 @@ const mapStateToProps = ({questions}, ownProps) => {
         questions: cleanedQuestions.map(q => ({
             ...q,
             key: q.id
-        }))
+        })).sort((a, b) => parseInt(a.id) - parseInt(b.id))
     };
 }
 
