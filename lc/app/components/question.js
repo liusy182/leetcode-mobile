@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import HTML from 'react-native-render-html';
 
+import { getDifficultyColor, getDifficultyMark } from '../helpers';
 
 class Question extends Component {
     render() {
@@ -10,16 +11,27 @@ class Question extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-                    <View>
-                        <Text style={styles.title}>{question.title}</Text>
-                        <HTML html={question.content} />
+                    <Text style={styles.title}>{question.title}</Text>
+                    <View style={styles.meta}>
+                        <View style={styles.levelWrapper}>
+                            <Text style={{ ...styles.level, color: getDifficultyColor(question.difficulty) }}>
+                                {question.difficulty}
+                            </Text>
+                        </View>
+                        {question.topicTags.map(tag => (
+                            <View key={tag} style={styles.tagWrapper}>
+                                <Text style={styles.tag}>{tag}</Text>
+                            </View>))}
                     </View>
-                    <View style={styles.btn}>
-                        <Button 
-                            title="Solution" 
-                            onPress={() => navigation.navigate('Solution', {questionid: question.id})}
-                        />
-                    </View>
+                    <HTML html={question.content} />
+                    {question.solution && (
+                        <View style={styles.solutionContainer}>
+                            <Button 
+                                title="Solution" 
+                                onPress={() => navigation.navigate('Solution', {questionid: question.id})}
+                            />
+                        </View>)
+                    }
                 </ScrollView>
             </View>
         );
@@ -55,7 +67,33 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
     }, 
-    btn: {
+    solutionContainer: {
         marginBottom: 20,
+    },
+    meta: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap',
+        paddingVertical: 4,
+    },
+    levelWrapper: {
+        marginRight: 4,
+        marginVertical: 4,
+        padding: 4,
+    },
+    level: {
+        fontSize: 14,
+    },
+    tagWrapper: {
+        flexWrap: 'wrap',
+        margin: 4,
+        padding: 4,
+        borderColor: '#67B7D1',
+        borderWidth: 1,
+        borderRadius: 4,
+    },
+    tag: {
+        fontSize: 12,
     }
 });

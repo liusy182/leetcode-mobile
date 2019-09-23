@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { getDifficultyColor, getDifficultyMark } from '../helpers';
 
-
-const getColor = (difficulty) => {
-    if (difficulty === 'Easy') {
-        return '#008000'
-    } else if (difficulty === 'Medium') {
-        return '#FFA500';
-    } else if (difficulty === 'Hard') {
-        return '#FF0000';
-    }
-    return '#000'
-
-}
 
 class QuestionListItem extends Component {
 
@@ -30,7 +19,9 @@ class QuestionListItem extends Component {
                         <Text style={styles.title}>{`${item.id}. ${item.title}`}</Text>
                     </View>
                     <View style={styles.levelWrapper}>
-                        <Text style={{ ...styles.level, color: getColor(item.difficulty)}}>{item.difficulty}</Text>
+                        <Text style={{ ...styles.level, color: getDifficultyColor(item.difficulty) }}>
+                            {getDifficultyMark(item.difficulty)}
+                        </Text>
                    </View>
                 </View>
                 <View style={styles.tagContainer}>
@@ -95,11 +86,11 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         padding: 4,
         marginRight: 4,
-        backgroundColor: '#67B7D1',
+        borderColor: '#67B7D1',
+        borderWidth: 1,
         borderRadius: 4,
     }, 
     tag: {
         fontSize: 12,
-        color: '#fff',
     }
 });

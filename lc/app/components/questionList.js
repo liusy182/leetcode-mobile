@@ -25,7 +25,11 @@ const mapStateToProps = ({questions}, ownProps) => {
     if (ownProps.filterText) {
         const text = ownProps.filterText.toLowerCase();
         cleanedQuestions = cleanedQuestions.filter(
-            q => q.title.toLowerCase().includes(text));
+            q => q.title.toLowerCase().includes(text)
+                || q.id.includes(text)
+                || q.difficulty.toLowerCase().includes(text)
+                || q.topicTags.find(v => v.toLowerCase().includes(text))
+        );
     }
     return  {
         questions: cleanedQuestions.map(q => ({
