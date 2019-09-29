@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button, Image, Dimensions } from 'react-native';
 import HTML from 'react-native-render-html';
 
-import { getDifficultyColor, getDifficultyMark } from '../helpers';
+import { getDifficultyColor } from '../helpers';
 
 class Question extends Component {
+    renderers = {
+        img: (htmlAttribs, children, convertedCSSStyles, passProps) => {
+            return false;
+            // return (<Image source={require(htmlAttribs.src)} />);
+        }
+    }
+
     render() {
         const { question, navigation } = this.props;
         return (
@@ -23,7 +30,7 @@ class Question extends Component {
                                 <Text style={styles.tag}>{tag}</Text>
                             </View>))}
                     </View>
-                    <HTML html={question.content} />
+                    <HTML html={question.content} renderers={this.renderers}/>
                     {question.solution && (
                         <View style={styles.solutionContainer}>
                             <Button 
