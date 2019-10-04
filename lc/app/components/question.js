@@ -5,11 +5,24 @@ import HTML from 'react-native-render-html';
 
 import { getDifficultyColor } from '../helpers';
 
+const imgPrefix = 'https://lc-all-assets.s3-us-west-2.amazonaws.com/'
+
 class Question extends Component {
     renderers = {
         img: (htmlAttribs, children, convertedCSSStyles, passProps) => {
-            return false;
-            // return (<Image source={require(htmlAttribs.src)} />);
+            let src = htmlAttribs.src.replace('../img/', '');
+            return (
+                <Image 
+                    key={src}
+                    style={{ 
+                        width: Dimensions.get('window').width,
+                        height: 300,
+                        resizeMode: 'contain'
+                     }}
+                    source={{ 
+                        uri: imgPrefix + src
+                     }} 
+                />);
         }
     }
 
@@ -30,7 +43,7 @@ class Question extends Component {
                                 <Text style={styles.tag}>{tag}</Text>
                             </View>))}
                     </View>
-                    <HTML html={question.content} renderers={this.renderers}/>
+                    <HTML html={question.content} renderers={this.renderers} question={question}/>
                     {question.solution && (
                         <View style={styles.solutionContainer}>
                             <Button 
