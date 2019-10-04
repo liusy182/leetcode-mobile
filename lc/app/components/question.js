@@ -19,9 +19,7 @@ class Question extends Component {
                         height: 300,
                         resizeMode: 'contain'
                      }}
-                    source={{ 
-                        uri: imgPrefix + src
-                     }} 
+                    source={{  uri: imgPrefix + src }} 
                 />);
         }
     }
@@ -48,7 +46,7 @@ class Question extends Component {
                         <View style={styles.solutionContainer}>
                             <Button 
                                 title="Solution" 
-                                onPress={() => navigation.navigate('Solution', {questionid: question.id})}
+                                onPress={() => navigation.navigate('Solution', { question })}
                             />
                         </View>)
                     }

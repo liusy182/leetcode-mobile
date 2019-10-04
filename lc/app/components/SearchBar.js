@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
+        borderBottomColor: '#d5d5d5',
+        borderBottomWidth: 1,
     },
     search: {
         fontSize: 20,

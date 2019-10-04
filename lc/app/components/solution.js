@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View } from 'react-native';
-import Markdown from 'react-native-markdown-renderer';
+import HTML from 'react-native-render-html';
 
 
 class Solution extends Component {
@@ -10,19 +10,16 @@ class Solution extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-                    <Markdown>{solution.content}</Markdown>
+                    <HTML html={solution.content} />
                 </ScrollView>
             </View>
         );
     }
 }
 
-const mapStateToProps = ({ solutions, codeSnippets }, ownProps) => {
-    const { questionId } = ownProps.navigation.state.params;
-    const solution = solutions.find((solution) => solution.questionId == questionId)
-    solution.content = solution.content
-        .replace(/\$\$CodeSnippet([\d+])\$\$/g, (match, id) => '```\n' + codeSnippets[id].code + '\n```')
-        .replace(/↵/g, '\n');
+const mapStateToProps = ({}, ownProps) => {
+    const { question } = ownProps.navigation.state.params;
+    const solution = question.solution
     return {
         solution
     };
@@ -43,7 +40,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        alignItems: 'flex-start',
+        alignItems: 'stretch',
     },
     title: {
         fontSize: 24,
