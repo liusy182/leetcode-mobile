@@ -7,7 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "expo": "^34.0.1",
+    "expo": "^35.0.0",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-native": "0.59.10",

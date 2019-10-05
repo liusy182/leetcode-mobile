@@ -7,7 +7,7 @@ import { getDifficultyColor, getDifficultyMark } from '../helpers';
 class QuestionListItem extends Component {
 
     onPress = () => {
-        this.props.navigation.navigate('Question', { questionId: this.props.item.id })
+        this.props.navigation.navigate('Question', { question: this.props.item })
     }
 
     render() {

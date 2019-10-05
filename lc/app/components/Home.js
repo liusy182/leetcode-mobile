@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import SearchBar from './SearchBar';
 import QuestionList from './QuestionList';
 
 
 class Home extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'Questions',
+        title: 'Problems',
         headerRight: (
-            <Button
-                onPress={() => navigation.navigate('Settings') }
-                title = "Settings"
-            />),
+            <TouchableOpacity 
+                style={styles.settings} 
+                onPress={() => navigation.navigate('Settings') }>
+                <Ionicons name="md-settings" size={32} color="grey" />
+            </TouchableOpacity>
+        ),
     })
     
     state = {
@@ -53,5 +56,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'stretch',
+    },
+    settings: {
+        marginRight: 8,
     }
 });
