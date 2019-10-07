@@ -15,14 +15,6 @@ class Solution extends Component {
     };
 
     renderers = {
-        a: (htmlAttribs, children, convertedCSSStyles, passProps) => {
-            const { key, data } = passProps;
-            return (
-                <Text key={key}>
-                    {children || data}
-                </Text>
-            );
-        },
         iframe: (htmlAttribs, children, convertedCSSStyles, passProps) => {
             const { key, data } = passProps;
             return (
@@ -31,6 +23,39 @@ class Solution extends Component {
                 </Text>
             );
         }
+    };
+
+    alterNode = (node) => {
+        const { name, parent } = node;
+    };
+
+    alterData = (node) => {
+        const { name, parent, children } = node;
+    };
+
+    alterChildren = (node) => {
+        const { name, children } = node;
+        
+    }
+
+    ignoreNodesFunction = (node, parentTagName, parentIsText) => {
+        const { name, children, data } = node;
+
+        // ignore the header - table of content
+        if (name == 'li' && parentTagName === 'ul'
+            && children && children.length > 0
+            && children[0].name === 'a'
+            && children[0].attribs
+            && children[0].attribs.href === '#solution'
+           ) {
+            return true;
+        }
+        if (name === 'p' && node.children && node.children.length > 0
+            && node.children[0].data
+            && node.children[0].data.toLowerCase().trim().startsWith('analysis written by')) {
+            return true;
+        }
+        return false;
     }
 
     goCopyright = () => {
@@ -56,7 +81,14 @@ class Solution extends Component {
                     >
                         <Text style={styles.copyrightTxt}>{"view in leetcode.com"}</Text>
                     </TouchableOpacity>
-                    <HTML html={solution.content} renderers={this.renderers} solution={solution} />
+                    <HTML 
+                        html={solution.content}
+                        renderers={this.renderers}
+                        alterNode={this.alterNode}
+                        alterData={this.alterData}
+                        alterChildren={this.alterChildren}
+                        ignoreNodesFunction={this.ignoreNodesFunction}
+                        solution={solution} />
                 </ScrollView>
             </View>
         );
@@ -73,7 +105,6 @@ const mapStateToProps = ({}, ownProps) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-
 })
 
 
