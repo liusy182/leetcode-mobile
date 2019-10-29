@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { StyleSheet, ScrollView, View, Text, TouchableOpacity, Linking } from 'react-native';
 import HTML from 'react-native-render-html';
+import Markdown from 'react-native-markdown-renderer';
 
 
 class Solution extends Component {
@@ -16,13 +17,22 @@ class Solution extends Component {
 
     renderers = {
         iframe: (htmlAttribs, children, convertedCSSStyles, passProps) => {
-            const { key, data } = passProps;
+            const { key, solution } = passProps;
+            const solutionDetails = solution[htmlAttribs.name];
+            if (!solutionDetails) {
+                return;
+            }
             return (
-                <Text key={key}>
-                    {'iframe'}
-                </Text>
+                <View key={key}>
+                    <Text style={styles.langTag}>{solutionDetails[0].langSlug}</Text>
+                    <ScrollView horizontal={true}>
+                        <Markdown style={styles.codeBlock}>
+                            {'```\n' + solutionDetails[0].code + '\n```'}
+                        </Markdown>
+                    </ScrollView>
+                </View>
             );
-        }
+        },
     };
 
     alterNode = (node) => {
@@ -72,6 +82,7 @@ class Solution extends Component {
 
     render() {
         const { solution } = this.props;
+    
         return (
             <View style={styles.container}>
                 <ScrollView>
@@ -132,5 +143,10 @@ const styles = StyleSheet.create({
     copyrightTxt: {
         fontSize: 12,
         color: '#0a84ff',
+    }, 
+    langTag: {
+        fontWeight: '700' 
+    },
+    codeBlock: {
     }
 });

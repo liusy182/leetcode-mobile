@@ -70,7 +70,7 @@ class Question extends Component {
                         <Text style={styles.copyrightTxt}>{"view in leetcode.com"}</Text>
                     </TouchableOpacity>
                     <HTML html={question.content} renderers={this.renderers} question={question}/>
-                    {question.solution && (
+                    {question.solution && question.solution.content && (
                         <View style={styles.solutionContainer}>
                             <Button 
                                 title="Solution" 
