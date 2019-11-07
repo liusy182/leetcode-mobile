@@ -69,7 +69,11 @@ class Question extends Component {
                     >
                         <Text style={styles.copyrightTxt}>{"view in leetcode.com"}</Text>
                     </TouchableOpacity>
-                    <HTML html={question.content} renderers={this.renderers} question={question}/>
+                    <HTML 
+                        baseFontStyle={styles.contentText} 
+                        html={question.content} 
+                        renderers={this.renderers} 
+                        question={question}/>
                     {question.solution && question.solution.content && (
                         <View style={styles.solutionContainer}>
                             <Button 
@@ -149,5 +153,8 @@ const styles = StyleSheet.create({
     copyrightTxt: {
         fontSize: 12,
         color: '#0a84ff',
+    }, 
+    contentText: {
+        fontSize: 16
     }
 });

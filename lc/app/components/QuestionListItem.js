@@ -18,6 +18,12 @@ class QuestionListItem extends Component {
                     <View style={styles.titleWrapper}>
                         <Text style={styles.title}>{`${item.id}. ${item.title}`}</Text>
                     </View>
+                    {item.solution && item.solution.content && (
+                        <View style={styles.solutionWrapper}>
+                            <Text style={styles.solution}>
+                                {'S'}
+                            </Text>
+                        </View>)}
                     <View style={styles.levelWrapper}>
                         <Text style={{ ...styles.level, color: getDifficultyColor(item.difficulty) }}>
                             {getDifficultyMark(item.difficulty)}
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     levelWrapper: {
-        flexGrow: 1,
+        flexGrow: 0,
         paddingLeft: 8,
     },
     level: {
@@ -77,6 +83,14 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         color: '#A9A9A9',
     }, 
+    solutionWrapper: {
+        flexGrow: 0,
+        paddingLeft: 8,
+    },
+    solution: {
+        fontSize: 14,
+        textAlign: 'right'
+    },
     tagContainer: {
         marginTop: 4,
         flexDirection: 'row',

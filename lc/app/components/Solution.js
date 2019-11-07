@@ -93,6 +93,7 @@ class Solution extends Component {
                         <Text style={styles.copyrightTxt}>{"view in leetcode.com"}</Text>
                     </TouchableOpacity>
                     <HTML 
+                        baseFontStyle={styles.contentText} 
                         html={solution.content}
                         renderers={this.renderers}
                         alterNode={this.alterNode}
@@ -148,5 +149,9 @@ const styles = StyleSheet.create({
         fontWeight: '700' 
     },
     codeBlock: {
+        fontSize: 16
+    },
+    contentText: {
+        fontSize: 16
     }
 });
