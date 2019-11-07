@@ -2,9 +2,9 @@
 
 WIP Leetcode mobile app, written with React Native and powered by Expo.
 
-<img src='./screen/1.png' width='60%' height='auto' style='margin: auto'>
-<img src='./screen/2.png' width='60%' height='auto' style='margin: auto'>
-<img src='./screen/3.png' width='60%' height='auto' style='margin: auto'>
+<img src='./screen/1.png' width='30%' height='auto' style='display: inline; margin: 5px;'>
+<img src='./screen/2.png' width='30%' height='auto' style='display: inline; margin: 5px;'>
+<img src='./screen/3.png' width='30%' height='auto' style='display: inline; margin: 5px;'>
 
 
 ### Environment:
