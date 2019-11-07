@@ -1,11 +1,16 @@
 # leetcode-mobile
 
+WIP Leetcode mobile app, written with React Native and powered by Expo.
 
-test $$O(n)$$
+<img src='./screen/1.png' width='30%' height='auto'>
+<img src='./screen/2.png' width='30%' height='auto'>
+<img src='./screen/3.png' width='30%' height='auto'>
 
 
-TODOs:
-    display image in questions
-    filter by difficulty
-    favirites -> study list
-    settings
+### Environment:
+
+```
+$ npm install -g expo-cli
+$ cd lc
+$ expo start
+```
